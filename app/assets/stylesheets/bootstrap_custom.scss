@@ -1,0 +1,36 @@
+$theme-colors: (
+  'primary': #f8961e,
+  'secondary': #FFBE0B,
+  'success': #43aa8b,
+  'danger': #f3722c,
+  'warning': #f94144,
+  'info': #f9c74f
+);
+
+$custom-colors: (
+  'mango': #FFBE0B,
+  'yellow-pantone': #fde12d,
+  'aero': #7ebce6,
+  'maximum-blue-purple': #A4A8EB,
+  'orchid-crayola': #DA8CCD,
+  'ultra-red': #F6768E
+);
+
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+) !default;
+
+$custom-spacer: (
+  6: $spacer * 5
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+$spacers: map-merge($spacers, $custom-spacer);
+
+@import "bootstrap";

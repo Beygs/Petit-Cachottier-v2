@@ -1,0 +1,65 @@
+<section class='bg-aero p-6'>
+  <h1 class='text-center text-white'>Bienvenue sur Le Petit Cachottier !</h1>
+</section>
+
+<svg id="visual" viewBox="0 0 960 200" height="200"
+preserveAspectRatio='none'
+class="curve-spacer"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+  <rect x="0" y="0" width="960" height="200" fill="#F6768E"></rect>
+  <path id='wave11' d="M0 81L32 79.8C64 78.7 128 76.3 192 73.7C256 71 320 68 384 69.2C448 70.3 512 75.7 576 78.5C640 81.3 704 81.7 768 81.8C832 82 896 82 928 82L960 82L960 0L928 0C896 0 832 0 768 0C704 0 640 0 576 0C512 0 448 0 384 0C320 0 256 0 192 0C128 0 64 0 32 0L0 0Z" fill="#da8ccd"></path>
+  <path id='wave21' d="M0 44L32 49.3C64 54.7 128 65.3 192 66C256 66.7 320 57.3 384 52.2C448 47 512 46 576 48.2C640 50.3 704 55.7 768 59C832 62.3 896 63.7 928 64.3L960 65L960 0L928 0C896 0 832 0 768 0C704 0 640 0 576 0C512 0 448 0 384 0C320 0 256 0 192 0C128 0 64 0 32 0L0 0Z" fill="#a4a8eb"></path>
+  <path id='wave31' d="M0 27L32 28C64 29 128 31 192 30.3C256 29.7 320 26.3 384 27.2C448 28 512 33 576 35.7C640 38.3 704 38.7 768 35.8C832 33 896 27 928 24L960 21L960 0L928 0C896 0 832 0 768 0C704 0 640 0 576 0C512 0 448 0 384 0C320 0 256 0 192 0C128 0 64 0 32 0L0 0Z" fill="#7ebce6"></path>
+  <path id='wave12' visibility='hidden' d="M0 92L32 87.7C64 83.3 128 74.7 192 77.2C256 79.7 320 93.3 384 96.5C448 99.7 512 92.3 576 90.2C640 88 704 91 768 91.5C832 92 896 90 928 89L960 88L960 0L928 0C896 0 832 0 768 0C704 0 640 0 576 0C512 0 448 0 384 0C320 0 256 0 192 0C128 0 64 0 32 0L0 0Z" fill="#da8ccd"></path>
+  <path id='wave22' visibility='hidden' d="M0 50L32 53.8C64 57.7 128 65.3 192 66.3C256 67.3 320 61.7 384 56.2C448 50.7 512 45.3 576 42.7C640 40 704 40 768 46.2C832 52.3 896 64.7 928 70.8L960 77L960 0L928 0C896 0 832 0 768 0C704 0 640 0 576 0C512 0 448 0 384 0C320 0 256 0 192 0C128 0 64 0 32 0L0 0Z" fill="#a4a8eb"></path>
+  <path id='wave32' visibility='hidden' d="M0 29L32 32.8C64 36.7 128 44.3 192 47.5C256 50.7 320 49.3 384 47.7C448 46 512 44 576 43.5C640 43 704 44 768 40.2C832 36.3 896 27.7 928 23.3L960 19L960 0L928 0C896 0 832 0 768 0C704 0 640 0 576 0C512 0 448 0 384 0C320 0 256 0 192 0C128 0 64 0 32 0L0 0Z" fill="#7ebce6"></path>
+</svg>
+
+<section class='gossips-display'>
+  <div class="container-fluid bg-ultra-red pb-5">
+    <div class='d-flex flex-wrap justify-content-around'>
+      <% @gossips.each do |gossip| %>
+        <div class="card home-card m-2">
+          <%= link_to gossip_path(gossip), data: { turbolinks: false } do %>
+            <div class="card-body">
+              <div class="card-title">
+                <%= gossip.user.first_name %>
+              </div>
+              <div class="card-text">
+                <%= gossip.title %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<script>
+  const tween1 = KUTE.fromTo(
+    '#wave11',
+    { path: '#wave11' },
+    { path: '#wave12' },
+    { repeat: 999, duration: 5000, yoyo: true }
+  );
+
+  const tween2 = KUTE.fromTo(
+    '#wave21',
+    { path: '#wave21' },
+    { path: '#wave22' },
+    { repeat: 999, duration: 5000, yoyo: true }
+  );
+
+  const tween3 = KUTE.fromTo(
+    '#wave31',
+    { path: '#wave31' },
+    { path: '#wave32' },
+    { repeat: 999, duration: 5000, yoyo: true }
+  );
+
+  tween1.start();
+  tween2.start();
+  tween3.start();
+</script>

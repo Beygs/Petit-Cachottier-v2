@@ -1,0 +1,70 @@
+@import 'bootstrap_custom';
+
+body {
+  overflow-x: hidden;
+}
+
+.curve-spacer {
+  width: 105vw;
+}
+
+.gossips-display {
+  min-height: 518px;
+  background: #f6768e;
+}
+
+.info-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-align: center;
+  font-size: 4em;
+  background: white;
+  mix-blend-mode: screen;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: default;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.home-card {
+  width: 15rem;
+}
+
+.show-card {
+  padding: 5em;
+  max-width: 60vw;
+  border-radius: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+#nav1 {
+  background: #7ebce6;
+}
+
+canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.card-container {
+  height: 90vh;
+}
+
+a {
+  text-decoration: none;
+  color: #797ee2;
+}
+
+a:hover {
+  color: #f6768e;
+}
