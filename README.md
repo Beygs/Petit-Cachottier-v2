@@ -1,4 +1,4 @@
-# The Gossip Database
+# Petit Cachottier
 
 [![forthebadge](./badges/the-hacking-project-badge.svg)](https://forthebadge.com)
 [![forthebadge](./badges/ice-breakers-badge.svg)](https://forthebadge.com)
@@ -29,8 +29,16 @@ Site web codé pour apprendre les bases de Ruby on Rails pendant le jour 26 de T
 
 1. Ouvrez un terminal
 2. Rendez-vous dans le répertoire du projet
-3. Petit `bundle install` des familles
-4. Pour tester la DBB (déjà peuplée avec le seed) : `rails console`, et c'est parti pour le fun
+3. Entrez :
+
+```shell
+$ bundle install
+$ rails db:create
+$ rails db:seed
+$ rails server
+```
+4. Ouvrez votre navigateur à l'URL fournie par le serveur *(habituellement `http://localhost:3000/`)*
+5. C'est parti pour le fun ! Bonne correction !
 
 ## Crédits et remerciements
 
