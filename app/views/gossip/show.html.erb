@@ -29,6 +29,30 @@
         <% end %>
       <% end %>
       <div class='card-text m-3 ms-0'><%= @gossip.content %></div>
+      <div class="card-text m-3 ms-0">
+        <p>Commentaires :</p>
+        <% @gossip.comments.each do |comment| %>
+          <div class="container comment-container pe-0">
+            <%=
+              link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}",
+              user_path(@gossip.user.id)
+            %><br/>
+            <%= comment.content %><br/>
+            <% comment.comments.each do |com_of_comment| %>
+              <div class="container comment-container pe-0">
+                <%=
+                  link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}",
+                  user_path(@gossip.user.id)
+                %><br/>
+                <%= com_of_comment.content %><br/>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to 'Créer un commentaire',
+        '#'
+      %>
     </div>
   </div>
 </div>
