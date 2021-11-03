@@ -16,7 +16,12 @@ class GossipController < ApplicationController
     tags = []
     
     params[:tags].join.split(';').each do |tag|
-      tags << Tag.create(title: tag)
+      @new_tag = Tag.new(title: tag)
+      if @new_tag.save
+        tags << @new_tag
+      else
+        tags << Tag.find_by(title: tag)
+      end
     end
 
     if @gossip.save
@@ -28,7 +33,41 @@ class GossipController < ApplicationController
       end
       redirect_to root_path
     else
-      render new_gossip_path(@gossip)
+      render :new
     end
   end
+
+  def edit
+    @gossip = Gossip.find(params[:id])
+    @tags = @gossip.tags.map { |t| t.title }.join(';')
+  end
+
+  def update
+    @gossip = Gossip.find(params[:id])
+
+    tags = []
+    
+    params[:tags].join.split(';').each do |tag|
+      @new_tag = Tag.new(title: tag)
+      if @new_tag.save
+        tags << @new_tag
+      else
+        tags << Tag.find_by(title: tag)
+      end
+    end
+
+    if @gossip.update(title: params[:title], content: params[:content])
+      JoinTableGossipTag.where(gossip: @gossip).destroy_all
+      tags.each do |tag|
+        JoinTableGossipTag.create(
+          gossip: @gossip,
+          tag: tag
+        )
+      end
+      redirect_to @gossip
+    else
+      render :edit
+    end
+  end
+
 end

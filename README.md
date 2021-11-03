@@ -51,7 +51,7 @@ $ rails server
 - [x] Page show utillisateur
 - [x] Page new gossip
 - [x] Page show city
-- [ ] Page edit gossip
+- [x] Page edit gossip
 - [ ] Destroy gossip
 - [ ] Création commentaires
 - [ ] Affichage commentaires

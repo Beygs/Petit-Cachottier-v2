@@ -4,6 +4,15 @@ const tagsArray = document.querySelector('.tags-array')
 
 let tags = [];
 
+initialize();
+
+function initialize() {
+  tagsArray.value.split(';').forEach(tag => {
+    tags.push(tag);
+    addTags();
+  })
+}
+
 function createTag(label) {
   const div = document.createElement('div');
   div.setAttribute('class', 'tag');
@@ -27,6 +36,7 @@ function reset() {
 
 function addTags() {
   reset();
+  tags = tags.filter(tag => tag !== '');
   tags.slice().reverse().forEach(tag => {
     const new_tag = createTag(tag);
     tagContainer.prepend(new_tag);
