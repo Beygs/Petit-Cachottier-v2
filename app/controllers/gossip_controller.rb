@@ -1,4 +1,8 @@
 class GossipController < ApplicationController
+  def index
+    @gossips = Gossip.all
+  end
+  
   def show
     @gossip = Gossip.find(params[:id])
   end
@@ -70,4 +74,9 @@ class GossipController < ApplicationController
     end
   end
 
+  def destroy
+    @gossip = Gossip.find(params[:id])
+    @gossip.destroy
+    redirect_to root_path
+  end
 end

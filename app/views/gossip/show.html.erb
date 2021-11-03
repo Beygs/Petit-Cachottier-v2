@@ -2,14 +2,25 @@
 
 <div class="card-container container-fluid d-flex justify-content-center">
   <div class="card show-card">
-    <div class="card-body">
-      <h1 class='card-title'><%= @gossip.title%></h1>
+    <div class="card-head">
+      <div class='container-fluid ps-0 m-4 ms-0 me-0 d-flex align-items-center justify-content-between'>
+        <h1 class='card-title'><%= @gossip.title%></h1>
+        <div class='d-flex flex-column align-items-end'>
+          <%= link_to 'Editer le gossip', edit_gossip_path(@gossip.id) %>
+          <%= link_to 'Supprimer le gossip',
+            gossip_path(@gossip),
+            data: { confirm: "Euuuuh t'es sûr ?", method: 'DELETE' }
+          %>
+        </div>
+      </div>
       <h3 class='card-subtitle mb-4'>
         <%=
           link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}",
           user_path(@gossip.user.id)
         %>
       </h3>
+    </div>
+    <div class='card-body ps-0 pe-0'>
       <% @gossip.tags.each do |tag| %>
         <%= link_to tag_path(tag.id) do %>
           <div class="btn btn-primary p-1 m-1 ms-0">
