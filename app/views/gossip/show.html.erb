@@ -34,15 +34,15 @@
         <% @gossip.comments.each do |comment| %>
           <div class="container comment-container pe-0">
             <%=
-              link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}",
-              user_path(@gossip.user.id)
+              link_to "#{comment.user.first_name} #{comment.user.last_name}",
+              user_path(comment.user.id)
             %><br/>
             <%= comment.content %><br/>
             <% comment.comments.each do |com_of_comment| %>
               <div class="container comment-container pe-0">
                 <%=
-                  link_to "#{@gossip.user.first_name} #{@gossip.user.last_name}",
-                  user_path(@gossip.user.id)
+                  link_to "#{com_of_comment.user.first_name} #{com_of_comment.user.last_name}",
+                  user_path(com_of_comment.user.id)
                 %><br/>
                 <%= com_of_comment.content %><br/>
               </div>
@@ -51,8 +51,28 @@
         <% end %>
       </div>
       <%= link_to 'Créer un commentaire',
-        '#'
+        '#',
+        class: 'create-comment',
+        style: 'display: block'
       %>
+      <%= form_tag comment_index_path,
+      method: 'post',
+      class: 'comment-form',
+      style: 'display: none' do %>
+        <%= hidden_field_tag :commentable, @gossip.id %>
+        <div class="form-floating">
+          <%= text_area_tag 'content',
+            nil,
+            id: 'inputContent',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Contenu'
+          %>
+          <%= label_tag 'inputContent', 'Contenu' %>
+        </div>
+        <%= submit_tag 'Commenter',
+          class: 'btn btn-primary m-3 ms-0'
+        %>
+      <% end %>
     </div>
   </div>
 </div>

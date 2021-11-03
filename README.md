@@ -53,7 +53,7 @@ $ rails server
 - [x] Page show city
 - [x] Page edit gossip
 - [x] Destroy gossip
-- [ ] Création commentaires
+- [x] Création commentaires
 - [ ] Affichage commentaires
 - [ ] Modification commentaires
 - [ ] Suppression commentaires

@@ -20,7 +20,10 @@
 
 const tx = document.getElementsByTagName("textarea");
 for (let i = 0; i < tx.length; i++) {
-  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+  tx[i].setAttribute(
+    "style", 
+    "min-height: calc(3.5rem + 2px); height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;"
+  );
   tx[i].addEventListener("input", OnInput, false);
 }
 
