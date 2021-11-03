@@ -1,3 +1,5 @@
+<div class="home-bg"></div>
+
 <section class='bg-aero p-6'>
   <h1 class='text-center text-white'>Bienvenue sur Le Petit Cachottier !</h1>
 </section>
@@ -16,50 +18,21 @@ xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
   <path id='wave32' visibility='hidden' d="M0 29L32 32.8C64 36.7 128 44.3 192 47.5C256 50.7 320 49.3 384 47.7C448 46 512 44 576 43.5C640 43 704 44 768 40.2C832 36.3 896 27.7 928 23.3L960 19L960 0L928 0C896 0 832 0 768 0C704 0 640 0 576 0C512 0 448 0 384 0C320 0 256 0 192 0C128 0 64 0 32 0L0 0Z" fill="#7ebce6"></path>
 </svg>
 
-<section class='gossips-display'>
-  <div class="container-fluid bg-ultra-red pb-5">
-    <div class='d-flex flex-wrap justify-content-around'>
-      <% @gossips.each do |gossip| %>
-        <div class="card home-card m-2">
-          <%= link_to gossip_path(gossip), data: { turbolinks: false } do %>
-            <div class="card-body">
-              <div class="card-title">
-                <%= gossip.user.first_name %>
-              </div>
-              <div class="card-text">
-                <%= gossip.title %>
-              </div>
+<section class='gossips-display ps-4 pe-4'>
+  <div class="container-fluid bg-ultra-red pb-5 d-flex flex-wrap justify-content-around">
+    <% @gossips.each do |gossip| %>
+      <div class="card home-card m-4">
+        <%= link_to gossip_path(gossip) do %>
+          <div class="card-body">
+            <div class="card-title">
+              <%= gossip.user.first_name %>
             </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+            <div class="card-text">
+              <%= gossip.title %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </section>
-
-<script>
-  const tween1 = KUTE.fromTo(
-    '#wave11',
-    { path: '#wave11' },
-    { path: '#wave12' },
-    { repeat: 999, duration: 3000, yoyo: true }
-  );
-
-  const tween2 = KUTE.fromTo(
-    '#wave21',
-    { path: '#wave21' },
-    { path: '#wave22' },
-    { repeat: 999, duration: 3000, yoyo: true }
-  );
-
-  const tween3 = KUTE.fromTo(
-    '#wave31',
-    { path: '#wave31' },
-    { path: '#wave32' },
-    { repeat: 999, duration: 3000, yoyo: true }
-  );
-
-  tween1.start();
-  tween2.start();
-  tween3.start();
-</script>

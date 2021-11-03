@@ -4,6 +4,21 @@ body {
   overflow-x: hidden;
 }
 
+.home-bg {
+  height: 100vh;
+  width: 100%;
+  background: #f6768e;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
 .curve-spacer {
   width: 110vw;
   position: relative;
@@ -11,7 +26,6 @@ body {
 }
 
 .gossips-display {
-  min-height: 518px;
   background: #f6768e;
 }
 
@@ -38,11 +52,30 @@ body {
 
 .home-card {
   width: 15rem;
+  border-radius: 1em;
+}
+
+.home-card .card-text {
+  font-size: 1.4em;
 }
 
 .show-card {
+  padding: 5em 2em;
+  min-width: 50%;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  border-radius: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.gossip-card {
+  width: 100%;
+}
+
+.new-card {
   padding: 5em;
-  max-width: 60vw;
+  max-width: 50vw;
+  margin-top: 10vh;
   border-radius: 1.5rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
@@ -58,10 +91,6 @@ canvas {
   z-index: -1;
 }
 
-.card-container {
-  height: 90vh;
-}
-
 a {
   text-decoration: none;
   color: #797ee2;
@@ -69,4 +98,40 @@ a {
 
 a:hover {
   color: #f6768e;
+}
+
+.tag-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tag-container .tag {
+  padding: 0 .5em;
+  border: 1px solid #ccc;
+  margin: 5px;
+  display: flex;
+  align-items: space-between;
+  border-radius: 3px;
+  background-color: #f2f2f2;
+}
+
+.alert-container li {
+  list-style: none;
+}
+
+.alert-container {
+  z-index: 99;
+  animation: vanish 3s 3s ease forwards;
+}
+
+@keyframes vanish {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }

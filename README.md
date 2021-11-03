@@ -34,11 +34,33 @@ Site web codé pour apprendre les bases de Ruby on Rails pendant le jour 26 de T
 ```shell
 $ bundle install
 $ rails db:create
+$ rails db:migrate
 $ rails db:seed
 $ rails server
 ```
 4. Ouvrez votre navigateur à l'URL fournie par le serveur *(habituellement `http://localhost:3000/`)*
 5. C'est parti pour le fun ! Bonne correction !
+
+## ToDo
+
+- [x] Page présentation
+- [x] Page contact
+- [x] Page cachée
+- [x] Page d'accueil
+- [x] Page show gossip
+- [x] Page show utillisateur
+- [x] Page new gossip
+- [x] Page show city
+- [ ] Page edit gossip
+- [ ] Destroy gossip
+- [ ] Création commentaires
+- [ ] Affichage commentaires
+- [ ] Modification commentaires
+- [ ] Suppression commentaires
+- [x] Tags
+- [ ] Signup
+- [ ] Login / Logout
+- [ ] Likes
 
 ## Crédits et remerciements
 

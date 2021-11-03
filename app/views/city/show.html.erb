@@ -1,0 +1,24 @@
+<canvas></canvas>
+
+<div class="card-container container-fluid d-flex justify-content-center">
+  <div class="card show-card">
+    <div class="card-body">
+      <h1 class='card-title'><%= @city.name %></h1>
+      <p class='card-text mb-5'><%= @city.zip_code %></p>
+      <% @city.gossips.each do |gossip| %>
+        <div class="card gossip-card mb-2">
+          <%= link_to gossip_path(gossip) do %>
+            <div class="card-body">
+              <div class="card-title">
+                <%= gossip.user.first_name %>
+              </div>
+              <div class="card-text">
+                <%= gossip.title %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -62,11 +62,11 @@ def pick_quote
     Faker::Movies::VForVendetta
   ]
 
-  quote_reservoir[rand(0...quote_reservoir.length)].quote
+  quote_reservoir.sample.quote
 end
 
 def pick_recipient (private_message)
-  user = User.all[rand(0..9)]
+  user = User.all.sample
   user == private_message.sender ? pick_recipient(private_message) : user
 end
 
@@ -77,14 +77,14 @@ end
   )
 end
 
-10.times do
+20.times do
   User.create(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     description: pick_quote,
     email: Faker::Internet.email,
     age: rand(18..80),
-    city: City.all[rand(0..9)]
+    city: City.all.sample
   )
 end
 
@@ -94,30 +94,30 @@ end
   )
 end
 
-20.times do
+50.times do
   gossip = Gossip.create(
     title: Faker::BossaNova.song,
     content: pick_quote,
-    user: User.all[rand(0..9)]
+    user: User.all.sample
   )
 
   JoinTableGossipTag.create(
     gossip: gossip,
-    tag: Tag.all[rand(0..9)]
+    tag: Tag.all.sample
   )
 end
 
-10.times do
+20.times do
   JoinTableGossipTag.create(
-    gossip: Gossip.all[rand(0..19)],
-    tag: Tag.all[rand(0..9)]
+    gossip: Gossip.all.sample,
+    tag: Tag.all.sample
   )
 end
 
 50.times do
   pm = PrivateMessage.create(
     content: pick_quote,
-    sender: User.all[rand(0..9)]
+    sender: User.all.sample
   )
 
   JoinTableMessageRecipient.create(
@@ -140,37 +140,37 @@ end
   )
 end
 
-20.times do
+40.times do
   Comment.create(
-    commentable: Gossip.all[rand(0..19)],
-    user: User.all[rand(0..9)],
+    commentable: Gossip.all.sample,
+    user: User.all.sample,
     content: pick_quote
   )
 end
 
-20.times do
+60.times do
   if rand(0..1) == 0
-    likeable = Comment.all[rand(0..19)]
+    likeable = Comment.all.sample
   else
-    likeable = Gossip.all[rand(0..19)]
+    likeable = Gossip.all.sample
   end
 
   Like.create(
-    user: User.all[rand(0..9)],
+    user: User.all.sample,
     likeable: likeable
   )
 end
 
-20.times do
+40.times do
   if rand(0..1) == 0
-    commentable = Comment.all[rand(0..19)]
+    commentable = Comment.all.sample
   else
-    commentable = Gossip.all[rand(0..19)]
+    commentable = Gossip.all.sample
   end
 
   Comment.create(
     commentable: commentable,
-    user: User.all[rand(0..9)],
+    user: User.all.sample,
     content: pick_quote
   )
 end

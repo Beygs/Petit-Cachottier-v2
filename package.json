@@ -1,5 +1,7 @@
 {
   "name": "petit_cachottier",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "kute.js": "^2.1.2"
+  }
 }
