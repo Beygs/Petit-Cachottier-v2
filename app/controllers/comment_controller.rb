@@ -15,4 +15,11 @@ class CommentController < ApplicationController
     @comment.update(content: params[:content])
     redirect_to Gossip.find(params[:commentable])
   end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @gossip_id = @comment.commentable_id
+    @comment.destroy
+    redirect_to Gossip.find(@gossip_id)
+  end
 end

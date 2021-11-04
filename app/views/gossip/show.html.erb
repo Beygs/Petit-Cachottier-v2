@@ -37,31 +37,37 @@
               link_to "#{comment.user.first_name} #{comment.user.last_name}",
               user_path(comment.user.id)
             %><br/>
-            <div class="create-comment-container">
-              <div class="comment-content"><%= comment.content %></div>
-              <%= link_to 'Editer le commentaire',
-                '#',
-                class: 'create-comment',
-                style: 'display: block'
-              %>
-              <%= form_tag comment_path(comment),
-              method: 'put',
-              class: 'comment-form',
-              style: 'display: none' do %>
-                <%= hidden_field_tag :commentable, @gossip.id %>
-                <div class="form-floating">
-                  <%= text_area_tag 'content',
-                    comment.content,
-                    id: 'inputContent',
-                    class: 'form-control m-2 ms-0',
-                    placeholder: 'Contenu'
-                  %>
-                  <%= label_tag 'inputContent', 'Contenu' %>
-                </div>
-                <%= submit_tag 'Commenter',
-                  class: 'btn btn-primary m-3 ms-0'
+            <div class="comment-actions">
+              <div class="create-comment-container">
+                <div class="comment-content"><%= comment.content %></div>
+                <%= link_to 'Editer le commentaire',
+                  '#',
+                  class: 'create-comment',
+                  style: 'display: block'
                 %>
-              <% end %>
+                <%= form_tag comment_path(comment),
+                method: 'put',
+                class: 'comment-form',
+                style: 'display: none' do %>
+                  <%= hidden_field_tag :commentable, @gossip.id %>
+                  <div class="form-floating">
+                    <%= text_area_tag 'content',
+                      comment.content,
+                      id: 'inputContent',
+                      class: 'form-control m-2 ms-0',
+                      placeholder: 'Contenu'
+                    %>
+                    <%= label_tag 'inputContent', 'Contenu' %>
+                  </div>
+                  <%= submit_tag 'Commenter',
+                    class: 'btn btn-primary m-3 ms-0'
+                  %>
+                <% end %>
+              </div>
+              <%= link_to 'Supprimer le commentaire',
+                comment_path(comment),
+                data: { confirm: "Euuuuh t'es sûr ?", method: 'DELETE' }
+              %>
             </div>
             <% comment.comments.each do |com_of_comment| %>
               <div class="container comment-container pe-0">

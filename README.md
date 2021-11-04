@@ -56,7 +56,7 @@ $ rails server
 - [x] Création commentaires
 - [x] Affichage commentaires
 - [x] Modification commentaires
-- [ ] Suppression commentaires
+- [x] Suppression commentaires
 - [x] Tags
 - [ ] Signup
 - [ ] Login / Logout
