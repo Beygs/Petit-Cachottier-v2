@@ -8,4 +8,11 @@ class CommentController < ApplicationController
     @comment.save
     redirect_to Gossip.find(params[:commentable])
   end
+
+  def update
+    @comment = Comment.find(params[:id])
+
+    @comment.update(content: params[:content])
+    redirect_to Gossip.find(params[:commentable])
+  end
 end

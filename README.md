@@ -54,8 +54,8 @@ $ rails server
 - [x] Page edit gossip
 - [x] Destroy gossip
 - [x] Création commentaires
-- [ ] Affichage commentaires
-- [ ] Modification commentaires
+- [x] Affichage commentaires
+- [x] Modification commentaires
 - [ ] Suppression commentaires
 - [x] Tags
 - [ ] Signup
