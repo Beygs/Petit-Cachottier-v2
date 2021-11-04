@@ -9,7 +9,8 @@ class CommentController < ApplicationController
       content: params[:content]
     )
     @comment.save
-    redirect_to Gossip.find(params[:commentable_id])
+    redirect_to Gossip.find(params[:commentable_id]) if params[:commentable_type] == 'Gossip'
+    redirect_to Gossip.find(params[:gossip_id])
   end
 
   def update

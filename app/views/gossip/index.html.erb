@@ -1,7 +1,7 @@
 <div class="home-bg"></div>
 
 <section class='bg-aero p-6'>
-  <h1 class='text-center text-white'>Bienvenue sur Le Petit Cachottier !</h1>
+  <h1 class='text-center text-white main-title' data-splitting>Le Petit Cachottier</h1>
 </section>
 
 <svg id="visual" viewBox="0 0 960 200" height="200"
@@ -29,6 +29,16 @@ xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
             </div>
             <div class="card-text">
               <%= gossip.title %>
+            </div>
+            <div class="card-text mt-2">
+              <div class="likes-count me-2">
+                <%= gossip.likes.count %> like(s)
+                <ul class='likes-display'>
+                  <% gossip.likes.each do |like| %>
+                    <li><%= "#{like.user.first_name} #{like.user.last_name}" %></li>
+                  <% end %>
+                </ul>
+              </div>
             </div>
           </div>
         <% end %>

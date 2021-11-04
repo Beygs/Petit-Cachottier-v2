@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#contact'
   resources 'gossip'
   resources 'user'
-  resources 'tag'
-  resources 'city'
+  resources 'tag', only: [:show, :create]
+  resources 'city', only: [:new]
   resources 'comment'
   resources 'sessions', only: [:new, :create, :destroy]
   resources 'likes', only: [:index, :new, :create, :destroy]

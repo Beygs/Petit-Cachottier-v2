@@ -157,8 +157,12 @@ a:hover {
   left: -1em;
   padding: 1em;
   color: black;
-  background-color: #f2f2f2;
+  background: #f2f2f2;
   border-radius: 1em;
+}
+
+.likes-display:empty {
+  background: transparent;
 }
 
 .likes-display li {
@@ -168,4 +172,77 @@ a:hover {
 
 .likes-count:hover .likes-display {
   display: block;
+}
+
+.home-card .likes-count {
+  font-size: .7em;
+}
+
+h1 > span {
+  line-height: 1;
+  font-size: 8rem;
+  display: block;
+}
+
+.main-title {
+  font-family: acier-bat-gris, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 0.7;
+  margin-left: -0.06ch;
+}
+
+.main-title .char {
+  cursor: default;
+  transform-origin: center bottom;
+  transition: transform 400ms cubic-bezier(0.4, 0, 0.7, 1.8), color 400ms ease;
+  color: var(--color);
+  box-shadow: none;
+}
+
+.main-title .char:hover {
+  transform: scale(1.4);
+  transition-duration: 200ms;
+  text-shadow: 0px 0px 3px black, 0px 0px 20px var(--color);
+  z-index: 1;
+}
+
+.main-title .char:nth-child(1):hover {
+  --color: #ffbe0b;
+}
+
+.main-title .char:nth-child(2):hover {
+  --color: #7ebce6;
+}
+
+.main-title .char:nth-child(3):hover {
+  --color: #fde12d;
+}
+
+.main-title .char:nth-child(4):hover {
+  --color: #a4a8eb;
+}
+
+.main-title .char:nth-child(5):hover {
+  --color: #da8ccd;
+}
+
+.main-title .char:nth-child(6):hover {
+  --color: #f6768e;
+}
+
+.main-title .char:nth-child(7):hover {
+  --color: #f3722c;
+}
+
+.main-title .char:nth-child(8):hover {
+  --color: #43aa8b;
+}
+
+.main-title .char:nth-child(9):hover {
+  --color: #f94144;
+}
+
+.main-title .char:nth-child(10):hover {
+  --color: #f9c74f;
 }

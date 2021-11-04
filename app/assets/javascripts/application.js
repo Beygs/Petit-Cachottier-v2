@@ -18,6 +18,8 @@
 //= require popper
 //= require bootstrap-sprockets
 
+Splitting();
+
 const tx = document.getElementsByTagName("textarea");
 for (let i = 0; i < tx.length; i++) {
   tx[i].setAttribute(
@@ -37,3 +39,11 @@ flash = document.querySelector('.flash');
 setTimeout(() => {
   flash.remove();
 }, 6000)
+
+const ul = document.getElementsByTagName('ul')
+
+for (let i = 0; i < ul.length; i++) {
+  if (ul[i].children.length === 0) {
+    ul[i].innerHTML = ''
+  }
+}

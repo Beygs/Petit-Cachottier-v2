@@ -1,4 +1,6 @@
 class GossipController < ApplicationController
+  before_action :authenticate_user, only: [:new, :create, :update, :delete]
+  
   def index
     @gossips = Gossip.all
   end
@@ -83,5 +85,15 @@ class GossipController < ApplicationController
     @gossip = Gossip.find(params[:id])
     @gossip.destroy
     redirect_to root_path
+  end
+
+  private
+
+  def authenticate_user
+    unless logged_in?
+      flash[:warning] = []
+      flash[:warning] << 'Connecte-toi stp.'
+      redirect_to new_session_path
+    end
   end
 end

@@ -15,6 +15,16 @@
               <div class="card-text">
                 <%= gossip.title %>
               </div>
+              <div class="card-text mt-2">
+                <div class="likes-count me-2">
+                  <%= gossip.likes.count %> like(s)
+                  <ul class='likes-display'>
+                    <% gossip.likes.each do |like| %>
+                      <li><%= "#{like.user.first_name} #{like.user.last_name}" %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
             </div>
           <% end %>
         </div>

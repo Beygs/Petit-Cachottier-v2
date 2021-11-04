@@ -5,7 +5,7 @@ class Gossip < ApplicationRecord
   validates :content,
     presence: true
 
-  belongs_to :user
+  belongs_to :user, dependent: :destroy
   has_many :join_table_gossip_tags
   has_many :tags, through: :join_table_gossip_tags
   has_many :comments, as: :commentable

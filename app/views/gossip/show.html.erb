@@ -32,27 +32,29 @@
       <% end %>
       <div class='card-text m-3 ms-0'><%= @gossip.content %></div>
       <div class="card-text m-3 ms-0">
-        <div class="likes-count">
-          <%= @gossip.likes.count %> like(s)
-          <ul class='likes-display'>
-            <% @gossip.likes.each do |like| %>
-              <li><%= "#{like.user.first_name} #{like.user.last_name}" %></li>
-            <% end %>
-          </ul>
+        <div class="container p-0 d-flex">
+          <div class="likes-count me-2">
+            <%= @gossip.likes.count %> like(s)
+            <ul class='likes-display'>
+              <% @gossip.likes.each do |like| %>
+                <li><%= "#{like.user.first_name} #{like.user.last_name}" %></li>
+              <% end %>
+            </ul>
+          </div>
+          <% if logged_in? && current_user.likes.include?(Like.find_by(likeable: @gossip, user: current_user)) %>
+            <%= link_to "Je n'aime plus",
+              like_path(Like.find_by(likeable: @gossip, user: current_user)),
+              method: 'delete',
+              class: 'me-2'
+            %>
+          <% else %>
+            <%= link_to "J'aime",
+              likes_path(likeable_id: @gossip.id, likeable_type: 'Gossip'),
+              method: 'post',
+              class: 'me-2'
+            %>
+          <% end %>
         </div>
-        <% if logged_in? && current_user.likes.include?(Like.find_by(likeable: @gossip, user: current_user)) %>
-          <%= link_to "Je n'aime plus",
-            like_path(Like.find_by(likeable: @gossip, user: current_user)),
-            method: 'delete',
-            class: 'me-2'
-          %>
-        <% else %>
-          <%= link_to "J'aime",
-            likes_path(likeable_id: @gossip.id, likeable_type: 'Gossip'),
-            method: 'post',
-            class: 'me-2'
-          %>
-        <% end %>
       </div>
       <div class="card-text m-3 ms-0">
         <p>Commentaires :</p>
@@ -80,12 +82,20 @@
                   %>
                   <%= label_tag 'inputContent', 'Contenu' %>
                 </div>
-                <%= submit_tag 'Commenter',
+                <%= submit_tag 'Editer',
                   class: 'btn btn-primary m-3 ms-0'
                 %>
               <% end %>
             </div>
             <div class="comment-actions ps-3 pe-3 d-flex">
+              <div class="likes-count me-2">
+                <%= comment.likes.count %> like(s)
+                <ul class='likes-display'>
+                  <% comment.likes.each do |like| %>
+                    <li><%= "#{like.user.first_name} #{like.user.last_name}" %></li>
+                  <% end %>
+                </ul>
+              </div>
               <% if logged_in? && current_user.likes.include?(Like.find_by(likeable: comment, user: current_user)) %>
                 <%= link_to "Je n'aime plus",
                   like_path(Like.find_by(likeable: comment, user: current_user)),
@@ -99,7 +109,33 @@
                   class: 'me-2'
                 %>
               <% end %>
-              <%= link_to 'Répondre', nil, class: 'me-2' %>
+              <div class="create-comment-container me-2">
+                <%= link_to 'Répondre',
+                  '#',
+                  class: 'create-comment no-content-hide',
+                  style: 'display: block'
+                %>
+                <%= form_tag comment_index_path,
+                method: 'post',
+                class: 'comment-form',
+                style: 'display: none' do %>
+                  <%= hidden_field_tag :gossip_id, @gossip.id %>
+                  <%= hidden_field_tag :commentable_id, comment.id %>
+                  <%= hidden_field_tag :commentable_type, 'Comment' %>
+                  <div class="form-floating">
+                    <%= text_area_tag 'content',
+                      nil,
+                      id: 'inputContent',
+                      class: 'form-control m-2 ms-0',
+                      placeholder: 'Contenu'
+                    %>
+                    <%= label_tag 'inputContent', 'Contenu' %>
+                  </div>
+                  <%= submit_tag 'Commenter',
+                    class: 'btn btn-primary m-3 ms-0'
+                  %>
+                <% end %>
+              </div>
               <div class="create-comment-container pe-2">
                 <% if logged_in? && comment.user == current_user %>
                   <%= link_to 'Editer',
@@ -118,12 +154,72 @@
             </div>
           </div>
           <% comment.comments.each do |com_of_comment| %>
-            <div class="container comment-container ms-3">
-              <%=
-                link_to "#{com_of_comment.user.first_name} #{com_of_comment.user.last_name}",
-                user_path(com_of_comment.user.id)
-              %><br/>
-              <%= com_of_comment.content %><br/>
+            <div class="container p-0">
+              <div class="container comment-container ms-5">
+                <div class='comment-author'>
+                  <%=
+                    link_to "#{com_of_comment.user.first_name} #{com_of_comment.user.last_name}",
+                    user_path(com_of_comment.user.id)
+                  %>
+                </div>
+                <div class='comment-content'><%= com_of_comment.content %></div>
+                <%= form_tag comment_path(com_of_comment),
+                method: 'put',
+                class: 'comment-form',
+                style: 'display: none' do %>
+                  <%= hidden_field_tag :commentable, @gossip.id %>
+                  <div class="form-floating">
+                    <%= text_area_tag 'content',
+                      com_of_comment.content,
+                      id: 'inputContent',
+                      class: 'form-control m-2 ms-0',
+                      placeholder: 'Contenu'
+                    %>
+                    <%= label_tag 'inputContent', 'Contenu' %>
+                  </div>
+                  <%= submit_tag 'Editer',
+                    class: 'btn btn-primary m-3 ms-0'
+                  %>
+                <% end %>
+              </div>
+              <div class="comment-actions ps-3 pe-3 ms-5 d-flex">
+                <div class="likes-count me-2">
+                  <%= com_of_comment.likes.count %> like(s)
+                  <ul class='likes-display'>
+                    <% com_of_comment.likes.each do |like| %>
+                      <li><%= "#{like.user.first_name} #{like.user.last_name}" %></li>
+                    <% end %>
+                  </ul>
+                </div>
+                <% if logged_in? && current_user.likes.include?(Like.find_by(likeable: com_of_comment, user: current_user)) %>
+                  <%= link_to "Je n'aime plus",
+                    like_path(Like.find_by(likeable: com_of_comment, user: current_user)),
+                    method: 'delete',
+                    class: 'me-2'
+                  %>
+                <% else %>
+                  <%= link_to "J'aime",
+                    likes_path(likeable_id: com_of_comment.id, likeable_type: 'Comment'),
+                    method: 'post',
+                    class: 'me-2'
+                  %>
+                <% end %>
+                <div class="create-comment-container pe-2">
+                  <% if logged_in? && com_of_comment.user == current_user %>
+                    <%= link_to 'Editer',
+                      '#',
+                      class: 'create-comment',
+                      style: 'display: block'
+                    %>
+                  <% end %>
+                </div>
+                <% if logged_in? && com_of_comment.user == current_user %>
+                  <%= link_to 'Supprimer',
+                    comment_path(comment),
+                    data: { confirm: "Euuuuh t'es sûr ?", method: 'DELETE' }
+                  %>
+                <% end %>
+              </div>
             </div>
           <% end %>
         <% end %>
