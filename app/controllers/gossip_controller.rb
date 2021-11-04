@@ -14,7 +14,7 @@ class GossipController < ApplicationController
     @gossip = Gossip.new(
       title: params[:title], 
       content: params[:content],
-      user: User.find_by(first_name: 'anonymous')
+      user: current_user
     )
 
     tags = []

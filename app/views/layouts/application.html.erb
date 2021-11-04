@@ -15,15 +15,26 @@
       <div class="container-fluid">
         <%= link_to 'Petit Cachottier', root_path, class: "navbar-brand text-white" %>
         <ul class="navbar-nav">
+          <% if logged_in? %>
+            <li class="nav-item active">
+              <%= link_to "Créer un gossip", new_gossip_path, class: 'nav-link text-white' %>
+            </li>
+          <% end %>
           <li class="nav-item active">
             <%= link_to "L'équipe", team_path, class: 'nav-link text-white' %>
           </li>
           <li class="nav-item active">
             <%= link_to "Contact", contact_path, class: 'nav-link text-white' %>
           </li>
-          <li class="nav-item active">
-            <%= link_to "Signup", new_user_path, class: 'nav-link text-white' %>
-          </li>
+          <% if logged_in? %>
+            <li class="nav-item active">
+              <%= link_to "Logout", session_path(session.id), method: :delete, class: 'nav-link text-white' %>
+            </li>
+          <% else %>
+            <li class="nav-item active">
+              <%= link_to "Signup", new_user_path, class: 'nav-link text-white' %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </nav>

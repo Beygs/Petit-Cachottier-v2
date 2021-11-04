@@ -1,0 +1,48 @@
+<canvas></canvas>
+
+<div class="alert-container position-absolute bottom-0">
+  <% if @user %>
+    <% if @user.errors.any? %>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li class='alert alert-warning' role='alert'>
+            <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="card-container container-fluid d-flex align-items-center justify-content-center">
+  <div class="card new-card">
+    <div class="card-body">
+      <%= form_tag url_for(action: 'create'), method: 'post' do %>
+        <h1 class='card-title mb-4'>S'identifier</h1>
+        <div class="form-floating">
+          <%= text_field_tag 'email',
+            nil,
+            id: 'inputEmail',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Adresse mail'
+          %>
+          <%= label_tag 'inputEmail', 'Adresse mail' %>
+        </div>
+        
+        <div class="form-floating">
+          <%= password_field_tag 'password',
+            nil,
+            id: 'inputPassword',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Mot de passe'
+          %>
+          <%= label_tag 'inputPassword', 'Mot de passe' %>
+        </div>
+
+        <%= submit_tag "S'identifier",
+          class: 'btn btn-primary m-3 ms-0' 
+        %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources 'tag'
   resources 'city'
   resources 'comment'
+  resources 'sessions', only: [:new, :create, :destroy]
 end

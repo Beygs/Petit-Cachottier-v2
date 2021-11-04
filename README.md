@@ -59,7 +59,7 @@ $ rails server
 - [x] Suppression commentaires
 - [x] Tags
 - [x] Signup
-- [ ] Login / Logout
+- [x] Login / Logout
 - [ ] Likes
 
 ## Crédits et remerciements
