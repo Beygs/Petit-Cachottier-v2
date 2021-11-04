@@ -2,8 +2,21 @@
 
 <div class="card-container container-fluid d-flex justify-content-center">
   <div class="card show-card">
+    <div class="card-head">
+      <div class='container-fluid ps-0 m-4 ms-0 me-0 d-flex align-items-center justify-content-between'>
+        <h1 class='card-title'><%= @user.first_name %> <%= @user.last_name %></h1>
+        <% if logged_in? && current_user == @user %>
+          <div class='d-flex flex-column align-items-end'>
+            <%= link_to 'Editer le profil', edit_user_path %>
+            <%= link_to 'Supprimer le profil',
+              user_path(@user),
+              data: { confirm: "Euuuuh t'es sûr ?", method: 'DELETE' }
+            %>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <div class="card-body">
-      <h1 class='card-title'><%= @user.first_name %> <%= @user.last_name %></h1>
       <div class="container-fluid p-3 ps-0 d-flex justify-content-between">
         <span class='card-text'>Age : <%= @user.age %></span>
         <span class="card-text">Ville : <%= link_to @user.city.name, city_path(@user.city) %></span>
