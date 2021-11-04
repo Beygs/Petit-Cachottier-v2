@@ -13,11 +13,13 @@ Appli de commérage à gogo 🤫
 
 Site web codé pour apprendre les bases de Ruby on Rails pendant le jour 26 de THP.
 
-## Screenshots
+## Screenshots & Live Site
 
-![Homepage Screenshot](./app/assets/images/home_screenshot.png)
+[Accéder au site web](https://petit-cachottier-v2.herokuapp.com/)
 
-![Gossip view Screenshot](./app/assets/images/gossip_screenshot.png)
+[![Homepage Screenshot](./app/assets/images/home_screenshot.png)](https://petit-cachottier-v2.herokuapp.com/)
+
+[![Gossip view Screenshot](./app/assets/images/gossip_screenshot.png)](https://petit-cachottier-v2.herokuapp.com/)
 
 ## Versions
 
