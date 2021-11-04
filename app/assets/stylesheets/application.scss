@@ -118,18 +118,19 @@ a:hover {
 }
 
 .comment-container {
-  border: 1px solid #ccc;
   background-color: #f2f2f2;
-  border-radius: 3px;
+  border-radius: 1em;
   margin: 3px;
+  padding: 1em;
   overflow: hidden;
+  width: unset;
 }
 
-.alert-container li {
+.flash li {
   list-style: none;
 }
 
-.alert-container {
+.flash {
   z-index: 99;
   animation: vanish 3s 3s ease forwards;
 }
@@ -140,6 +141,31 @@ a:hover {
   }
   100% {
     opacity: 0;
-    display: none;
   }
+}
+
+.likes-count {
+  color: #777;
+  width: fit-content;
+  position: relative;
+}
+
+.likes-display {
+  display: none;
+  position: absolute;
+  bottom: 1em;
+  left: -1em;
+  padding: 1em;
+  color: black;
+  background-color: #f2f2f2;
+  border-radius: 1em;
+}
+
+.likes-display li {
+  list-style: none;
+  width: max-content;
+}
+
+.likes-count:hover .likes-display {
+  display: block;
 }

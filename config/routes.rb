@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources 'city'
   resources 'comment'
   resources 'sessions', only: [:new, :create, :destroy]
+  resources 'likes', only: [:index, :new, :create, :destroy]
 end

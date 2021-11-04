@@ -60,7 +60,7 @@ $ rails server
 - [x] Tags
 - [x] Signup
 - [x] Login / Logout
-- [ ] Likes
+- [x] Likes
 
 ## Crédits et remerciements
 

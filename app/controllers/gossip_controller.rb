@@ -37,7 +37,12 @@ class GossipController < ApplicationController
       end
       redirect_to root_path
     else
-      render :new
+      flash[:warning] = []
+
+      @gossip.errors.full_messages.each do |error|
+        flash[:warning] << error
+      end
+      redirect_to new_gossip_path
     end
   end
 

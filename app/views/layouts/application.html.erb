@@ -40,6 +40,15 @@
     </nav>
     <%= yield %>
 
+    <div class="flash position-absolute bottom-0">
+      <ul>
+        <% flash.each do |key, value| %>
+          <% value.each do |message| %>
+            <li class="alert alert-<%= key %>"><%= message %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
 
     <%= javascript_include_tag 'application' %>
   </body>

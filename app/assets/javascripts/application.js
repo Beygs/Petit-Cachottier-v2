@@ -31,3 +31,9 @@ function OnInput() {
   this.style.height = "auto";
   this.style.height = (this.scrollHeight) + "px";
 }
+
+flash = document.querySelector('.flash');
+
+setTimeout(() => {
+  flash.remove();
+}, 6000)

@@ -1,12 +1,15 @@
 class CommentController < ApplicationController
+  before_action :authenticate_user
+  
   def create
     @comment = Comment.new(
-      commentable: Gossip.find(params[:commentable]),
+      commentable_id: params[:commentable_id],
+      commentable_type: params[:commentable_type],
       user: current_user,
       content: params[:content]
     )
     @comment.save
-    redirect_to Gossip.find(params[:commentable])
+    redirect_to Gossip.find(params[:commentable_id])
   end
 
   def update
@@ -21,5 +24,15 @@ class CommentController < ApplicationController
     @gossip_id = @comment.commentable_id
     @comment.destroy
     redirect_to Gossip.find(@gossip_id)
+  end
+
+  private
+
+  def authenticate_user
+    unless logged_in?
+      flash[:warning] = []
+      flash[:warning] << 'Connecte-toi stp.'
+      redirect_to new_session_path
+    end
   end
 end
