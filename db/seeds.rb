@@ -7,6 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+require 'csv'
+require 'activerecord-import/base'
+require 'activerecord-import/active_record/adapters/postgresql_adapter'
 
 Faker::Config.locale = 'fr'
 
@@ -70,12 +73,15 @@ def pick_recipient (private_message)
   user == private_message.sender ? pick_recipient(private_message) : user
 end
 
-10.times do
-  City.create(
-    name: Faker::Address.city,
-    zip_code: Faker::Address.zip_code
+cities = []
+CSV.foreach('./db/insee.csv', headers: true) do |row|
+  city = row.to_h
+  cities << City.new(
+    name: city['Commune'].split.map { |w| w.capitalize }.join(' '),
+    zip_code: city['Codepos']
   )
 end
+City.import cities, recursive: true
 
 20.times do
   User.create(
@@ -84,7 +90,8 @@ end
     description: pick_quote,
     email: Faker::Internet.email,
     age: rand(18..80),
-    city: City.all.sample
+    city: City.all.sample,
+    password: Faker::Internet.password
   )
 end
 

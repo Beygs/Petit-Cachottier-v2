@@ -1,0 +1,98 @@
+<canvas></canvas>
+
+<div class="alert-container position-absolute bottom-0">
+  <% if @user %>
+    <% if @user.errors.any? %>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li class='alert alert-warning' role='alert'>
+            <%= message %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="card-container container-fluid d-flex align-items-center justify-content-center">
+  <div class="card new-card">
+    <div class="card-body">
+      <%= form_tag url_for(action: 'create'), method: 'post' do %>
+        <h1 class='card-title mb-4'>Créer un compte</h1>
+        <div class="form-floating">
+          <%= text_field_tag 'first_name',
+            nil,
+            id: 'inputFirstName',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Prénom'
+          %>
+          <%= label_tag 'inputFirstName', 'Prénom' %>
+        </div>
+
+        <div class="form-floating">
+          <%= text_field_tag 'last_name',
+            nil,
+            id: 'inputLastName',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Nom'
+          %>
+          <%= label_tag 'inputLastName', 'Nom' %>
+        </div>
+
+        <div class="form-floating">
+          <%= text_field_tag 'email',
+            nil,
+            id: 'inputEmail',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Adresse mail'
+          %>
+          <%= label_tag 'inputEmail', 'Adresse mail' %>
+        </div>
+        
+        <div class="form-floating">
+          <%= text_field_tag 'age',
+            nil,
+            id: 'inputAge',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Age'
+          %>
+          <%= label_tag 'inputAge', 'Age' %>
+        </div>
+
+        <div class="form-floating">
+          <%= text_field_tag 'city',
+            nil,
+            id: 'inputCity',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Ville'
+          %>
+          <%= label_tag 'inputCity', 'Ville' %>
+        </div>
+
+        <div class="form-floating">
+          <%= password_field_tag 'password',
+            nil,
+            id: 'inputPassword',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Mot de passe'
+          %>
+          <%= label_tag 'inputPassword', 'Mot de passe' %>
+        </div>
+
+        <div class="form-floating">
+          <%= password_field_tag 'password_confirmation',
+            nil,
+            id: 'inputPasswordConfirmation',
+            class: 'form-control m-2 ms-0',
+            placeholder: 'Confirmez le mot de passe'
+          %>
+          <%= label_tag 'inputPasswordConfirmation', 'Confirmez le mot de passe' %>
+        </div>
+
+        <%= submit_tag 'Créer un compte',
+          class: 'btn btn-primary m-3 ms-0' 
+        %>
+      <% end %>
+    </div>
+  </div>
+</div>
