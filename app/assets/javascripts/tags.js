@@ -15,7 +15,7 @@ function initialize() {
 
 function createTag(label) {
   const div = document.createElement('div');
-  div.setAttribute('class', 'tag');
+  div.setAttribute('class', 'tag btn btn-secondary');
   const span = document.createElement('span');
   span.innerHTML = label;
   const closeBtn = document.createElement('i');

@@ -25,7 +25,7 @@
     <div class='card-body ps-0 pe-0'>
       <% @gossip.tags.each do |tag| %>
         <%= link_to tag_path(tag.id) do %>
-          <div class="btn btn-primary p-1 m-1 ms-0">
+          <div class="btn btn-secondary tag">
             <%= tag.title %>
           </div>
         <% end %>

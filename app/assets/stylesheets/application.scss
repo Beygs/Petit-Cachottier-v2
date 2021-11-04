@@ -73,9 +73,10 @@ body {
 }
 
 .new-card {
-  padding: 5em;
-  max-width: 50vw;
-  margin-top: 10vh;
+  padding: 2em;
+  min-width: 50%;
+  margin-top: 5em;
+  margin-bottom: 5em;
   border-radius: 1.5rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
@@ -107,14 +108,16 @@ a:hover {
   width: 100%;
 }
 
-.tag-container .tag {
-  padding: 0 .5em;
-  border: 1px solid #ccc;
-  margin: 5px;
+.tag {
   display: flex;
-  align-items: space-between;
-  border-radius: 3px;
-  background-color: #f2f2f2;
+  align-items: center;
+  justify-content: space-between;
+  margin: .3em;
+  width: fit-content;
+}
+
+.tag i {
+  margin-left: 1em;
 }
 
 .comment-container {
