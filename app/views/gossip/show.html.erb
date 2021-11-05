@@ -215,7 +215,7 @@
                 </div>
                 <% if logged_in? && (com_of_comment.user == current_user || current_user.is_admin) %>
                   <%= link_to 'Supprimer',
-                    comment_path(comment),
+                    comment_path(com_of_comment),
                     data: { confirm: "Euuuuh t'es sûr ?", method: 'DELETE' }
                   %>
                 <% end %>
