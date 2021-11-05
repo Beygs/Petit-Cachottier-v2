@@ -8,7 +8,11 @@ class LikesController < ApplicationController
       user: current_user
     )
     begin
-      redirect_to gossip_path(@like.likeable.commentable)
+      if @like.likeable.commentable_type == 'Gossip'
+        redirect_to gossip_path(@like.likeable.commentable)
+      else
+        redirect_to gossip_path(@like.likeable.commentable.commentable)
+      end
     rescue
       redirect_to gossip_path(params[:likeable_id])
     end
@@ -18,7 +22,11 @@ class LikesController < ApplicationController
     @like = Like.find(params[:id])
     @like.destroy
     begin
-      redirect_to gossip_path(@like.likeable.commentable)
+      if @like.likeable.commentable_type == 'Gossip'
+        redirect_to gossip_path(@like.likeable.commentable)
+      else
+        redirect_to gossip_path(@like.likeable.commentable.commentable)
+      end
     rescue
       redirect_to gossip_path(@like.likeable_id)
     end
