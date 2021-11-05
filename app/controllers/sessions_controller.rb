@@ -8,7 +8,9 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
       log_in(@user)
 
-      remember(@user)
+      if params[:remember]
+        remember(@user)
+      end
 
       redirect_to root_path
     else

@@ -89,6 +89,11 @@
           <%= label_tag 'inputPasswordConfirmation', 'Confirmez le mot de passe' %>
         </div>
 
+        <div class="form-check mt-4 mb-4">
+          <%= check_box_tag :remember, true, false, class: 'form-check-input', id: 'checkboxInput' %>
+          <%= label_tag 'checkboxInput', 'Se souvenir de moi', class: 'form-check-label' %>
+        </div>
+
         <%= submit_tag 'Créer un compte',
           class: 'btn btn-primary m-3 ms-0' 
         %>

@@ -17,6 +17,11 @@ class UserController < ApplicationController
     )
 
     if @user.save
+
+      if params[:remember]
+        remember(@user)
+      end
+
       log_in(@user)
       redirect_to root_path
     else
