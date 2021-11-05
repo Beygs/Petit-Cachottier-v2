@@ -7,6 +7,9 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       log_in(@user)
+
+      remember(@user)
+
       redirect_to root_path
     else
       render :new
@@ -14,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
+    log_out(current_user)
     redirect_to root_path
   end
 end
