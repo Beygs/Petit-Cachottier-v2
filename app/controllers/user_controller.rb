@@ -12,7 +12,8 @@ class UserController < ApplicationController
       city: City.find_by(name: city_format(params[:city])),
       age: params[:age],
       password: params[:password],
-      password_confirmation: params[:password_confirmation]
+      password_confirmation: params[:password_confirmation],
+      is_admin: false
     )
 
     if @user.save
